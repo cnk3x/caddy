@@ -46,10 +46,12 @@ require (
 	github.com/casbin/caddy-authz v1.0.2
 	github.com/casbin/casbin v1.9.1 // indirect
 	github.com/coopernurse/caddy-awslambda v1.0.0
+	github.com/decker502/dnspod-go v0.2.0 // indirect
 	github.com/dhaavi/caddy-permission v0.6.0
 	github.com/echocat/caddy-filter v0.14.0
 	github.com/epicagency/caddy-expires v1.1.1
 	github.com/freman/caddy-reauth v0.0.0-20190703021030-0863eef919a2
+	github.com/go-acme/lego v2.7.2+incompatible // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/gorilla/handlers v1.4.2 // indirect
 	github.com/gorilla/sessions v1.2.0 // indirect
@@ -70,6 +72,8 @@ require (
 	github.com/miquella/caddy-awses v0.0.0-00010101000000-000000000000
 	github.com/mmcloughlin/geohash v0.9.0 // indirect
 	github.com/nicolasazrak/caddy-cache v0.3.4
+	github.com/nrdcg/namesilo v0.2.1 // indirect
+	github.com/opentracing/opentracing-go v1.1.0 // indirect
 	github.com/payintech/caddy-datadog v0.0.0-00010101000000-000000000000
 	github.com/philhofer/fwd v1.0.0 // indirect
 	github.com/pieterlouw/caddy-grpc v0.1.0
@@ -85,6 +89,7 @@ require (
 	github.com/tarent/loginsrv v1.3.1
 	github.com/techknowlogick/caddy-s3browser v0.0.0-20190710044735-655ba503d3ea
 	github.com/tinylib/msgp v1.1.0 // indirect
+	github.com/vultr/govultr v0.1.4 // indirect
 	github.com/xuqingfeng/caddy-rate-limit v1.6.4
 	github.com/zikes/gopkg v0.0.0-00010101000000-000000000000
 	go.okkur.org/torproxy v0.2.0

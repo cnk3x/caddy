@@ -3,7 +3,14 @@ package main
 import (
 	"github.com/caddyserver/caddy/caddy/caddymain"
 
-	//dns providers
+	//Plugins
+
+	//Caddyfile Loaders
+	_ "github.com/lucaslorentz/caddy-docker-proxy/plugin" //docker
+
+	//DNS Providers
+	_ "github.com/caddyserver/dnsproviders/acmedns"
+	_ "github.com/caddyserver/dnsproviders/alidns"
 	_ "github.com/caddyserver/dnsproviders/auroradns"
 	_ "github.com/caddyserver/dnsproviders/azure"
 	_ "github.com/caddyserver/dnsproviders/cloudflare"
@@ -23,10 +30,14 @@ import (
 	_ "github.com/caddyserver/dnsproviders/glesys"
 	_ "github.com/caddyserver/dnsproviders/godaddy"
 	_ "github.com/caddyserver/dnsproviders/googlecloud"
+	_ "github.com/caddyserver/dnsproviders/httpreq"
+	_ "github.com/caddyserver/dnsproviders/inwx"
 	_ "github.com/caddyserver/dnsproviders/lightsail"
 	_ "github.com/caddyserver/dnsproviders/linode"
+	_ "github.com/caddyserver/dnsproviders/linodev4"
 	_ "github.com/caddyserver/dnsproviders/namecheap"
 	_ "github.com/caddyserver/dnsproviders/namedotcom"
+	_ "github.com/caddyserver/dnsproviders/namesilo"
 	_ "github.com/caddyserver/dnsproviders/nifcloud"
 	_ "github.com/caddyserver/dnsproviders/ns1"
 	_ "github.com/caddyserver/dnsproviders/otc"
@@ -37,54 +48,59 @@ import (
 	_ "github.com/caddyserver/dnsproviders/route53"
 	_ "github.com/caddyserver/dnsproviders/selectel"
 	_ "github.com/caddyserver/dnsproviders/stackpath"
+	_ "github.com/caddyserver/dnsproviders/transip"
 	_ "github.com/caddyserver/dnsproviders/vscale"
 	_ "github.com/caddyserver/dnsproviders/vultr"
 
-	//plugins
-	_ "blitznote.com/src/http.upload"
-	_ "github.com/BTBurke/caddy-jwt"
-	_ "github.com/SchumacherFM/mailout"
-	_ "github.com/Xumeiquer/nobots"
-	_ "github.com/aablinov/caddy-geoip"
-	_ "github.com/abiosoft/caddy-git"
-	_ "github.com/caddyserver/forwardproxy"
-	_ "github.com/captncraig/caddy-realip"
-	_ "github.com/captncraig/cors/caddy"
-	_ "github.com/casbin/caddy-authz"
-	_ "github.com/coopernurse/caddy-awslambda"
-	_ "github.com/dhaavi/caddy-permission"
-	_ "github.com/echocat/caddy-filter"
-	_ "github.com/epicagency/caddy-expires"
-	_ "github.com/freman/caddy-reauth"
-	_ "github.com/hacdias/caddy-minify"
-	_ "github.com/hacdias/caddy-service"
-	_ "github.com/hacdias/caddy-webdav"
-	_ "github.com/jung-kurt/caddy-cgi"
-	_ "github.com/jung-kurt/caddy-pubsub"
-	_ "github.com/linkonoid/caddy-dyndns"
-	_ "github.com/lucaslorentz/caddy-docker-proxy/plugin"
-	_ "github.com/mastercactapus/caddy-proxyprotocol"
-	_ "github.com/miekg/caddy-prometheus"
-	_ "github.com/miquella/caddy-awses"
-	_ "github.com/nicolasazrak/caddy-cache"
-	_ "github.com/payintech/caddy-datadog"
-	_ "github.com/pieterlouw/caddy-grpc"
-	_ "github.com/pyed/ipfilter"
-	_ "github.com/restic/caddy"
-	_ "github.com/simia-tech/caddy-locale"
-	_ "github.com/tarent/loginsrv/caddy"
-	_ "github.com/techknowlogick/caddy-s3browser"
-	_ "github.com/xuqingfeng/caddy-rate-limit"
-	_ "github.com/zikes/gopkg"
-	_ "go.okkur.org/torproxy"
+	//Directives/Middleware
+	_ "github.com/BTBurke/caddy-jwt"                        //http.jwt
+	_ "github.com/SchumacherFM/mailout"                     //http.mailout
+	_ "github.com/Xumeiquer/nobots"                         //http.nobots
+	_ "github.com/aablinov/caddy-geoip"                     //http.geoip
+	_ "github.com/abiosoft/caddy-git"                       //http.git
+	_ "github.com/caddyserver/forwardproxy"                 //http.forwardproxy
+	_ "github.com/captncraig/caddy-realip"                  //http.realip
+	_ "github.com/captncraig/cors/caddy"                    //http.cors
+	_ "github.com/casbin/caddy-authz"                       //http.authz
+	_ "github.com/coopernurse/caddy-awslambda"              //http.awslambda
+	_ "github.com/echocat/caddy-filter"                     //http.filter
+	_ "github.com/epicagency/caddy-expires"                 //http.expires
+	_ "github.com/freman/caddy-reauth"                      //http.reauth
+	_ "github.com/hacdias/caddy-minify"                     //http.minify
+	_ "github.com/hacdias/caddy-webdav"                     //http.webdav
+	_ "github.com/jung-kurt/caddy-cgi"                      //http.cgi
+	_ "github.com/jung-kurt/caddy-pubsub"                   //http.pubsub
+	_ "github.com/linkonoid/caddy-dyndns"                   //http.dyndns
+	_ "github.com/lucaslorentz/caddy-supervisor/httpplugin" //http.supervisor
+	_ "github.com/mastercactapus/caddy-proxyprotocol"       //http.proxyprotocol
+	_ "github.com/miekg/caddy-prometheus"                   //http.prometheus
+	_ "github.com/miquella/caddy-awses"                     //http.awses
+	_ "github.com/nicolasazrak/caddy-cache"                 //http.cache
+	_ "github.com/payintech/caddy-datadog"                  //http.datadog
+	_ "github.com/pieterlouw/caddy-grpc"                    //http.grpc
+	_ "github.com/pyed/ipfilter"                            //http.ipfilter
+	_ "github.com/restic/caddy"                             //http.restic
+	_ "github.com/simia-tech/caddy-locale"                  //http.locale
+	_ "github.com/tarent/loginsrv/caddy"                    //http.login
+	_ "github.com/techknowlogick/caddy-s3browser"           //http.s3browser
+	_ "github.com/xuqingfeng/caddy-rate-limit"              //http.ratelimit
+	_ "github.com/zikes/gopkg"                              //http.gopkg
 
-	//server types
-	_ "github.com/lucaslorentz/caddy-supervisor/httpplugin"
-	_ "github.com/lucaslorentz/caddy-supervisor/servertype"
-	_ "github.com/pieterlouw/caddy-net/caddynet"
+	// _ "go.okkur.org/torproxy"                            //http.torproxy issus: registered dev directive
 
-	//tls clustering
-	_ "github.com/pteich/caddy-tlsconsul"
+	//More Directives/Middleware
+	_ "blitznote.com/src/http.upload"      //http.upload
+	_ "github.com/dhaavi/caddy-permission" //http.permission
+
+	//Event Hooks
+	// _ "github.com/hacdias/caddy-service" //hook.service issus: panic: close of closed channel
+
+	//Server Types
+	_ "github.com/lucaslorentz/caddy-supervisor/servertype" //supervisor
+	_ "github.com/pieterlouw/caddy-net/caddynet"            //net
+
+	//TLS Clustering
+	_ "github.com/pteich/caddy-tlsconsul" //consul
 )
 
 func main() {
