@@ -12,3 +12,5 @@
 *.out
 
 bin/
+
+go.sum

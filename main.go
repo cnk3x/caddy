@@ -79,21 +79,23 @@ import (
 	_ "github.com/payintech/caddy-datadog"                  //http.datadog
 	_ "github.com/pieterlouw/caddy-grpc"                    //http.grpc
 	_ "github.com/pyed/ipfilter"                            //http.ipfilter
-	_ "github.com/restic/caddy"                             //http.restic
-	_ "github.com/simia-tech/caddy-locale"                  //http.locale
-	_ "github.com/tarent/loginsrv/caddy"                    //http.login
-	_ "github.com/techknowlogick/caddy-s3browser"           //http.s3browser
-	_ "github.com/xuqingfeng/caddy-rate-limit"              //http.ratelimit
-	_ "github.com/zikes/gopkg"                              //http.gopkg
 
-	// _ "go.okkur.org/torproxy"                            //http.torproxy issus: registered dev directive
+	_ "github.com/restic/caddy"                   //http.restic
+	_ "github.com/shuxs/gopkgr"                   //http.gopkgr
+	_ "github.com/simia-tech/caddy-locale"        //http.locale
+	_ "github.com/tarent/loginsrv/caddy"          //http.login
+	_ "github.com/techknowlogick/caddy-s3browser" //http.s3browser
+	_ "github.com/xuqingfeng/caddy-rate-limit"    //http.ratelimit
+	_ "github.com/zikes/gopkg"                    //http.gopkg
+
+	// _ "go.okkur.org/torproxy" //http.torproxy: registered dev directive
 
 	//More Directives/Middleware
 	_ "blitznote.com/src/http.upload"      //http.upload
 	_ "github.com/dhaavi/caddy-permission" //http.permission
 
 	//Event Hooks
-	// _ "github.com/hacdias/caddy-service" //hook.service issus: panic: close of closed channel
+	_ "github.com/hacdias/caddy-service" //hook.service issus: panic: close of closed channel
 
 	//Server Types
 	_ "github.com/lucaslorentz/caddy-supervisor/servertype" //supervisor
