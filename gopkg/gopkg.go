@@ -3,7 +3,7 @@
 //     gopkg [path] [vcs-type] [uri]
 //     gopkg [path] [uri]
 
-package main
+package gopkg
 
 import (
 	"html/template"

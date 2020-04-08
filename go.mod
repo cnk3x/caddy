@@ -1,4 +1,4 @@
-module caddy
+module github.com/shuxs/caddy
 
 go 1.14
 
@@ -23,6 +23,7 @@ require (
 	github.com/epicagency/caddy-expires v1.1.1
 	github.com/freman/caddy-reauth v0.0.0-20191025011741-deaa60e56872
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
+	github.com/gorilla/handlers v1.4.2 // indirect
 	github.com/gorilla/sessions v1.2.0 // indirect
 	github.com/hacdias/caddy-minify v1.0.2
 	github.com/hacdias/caddy-service v1.0.1
@@ -36,18 +37,27 @@ require (
 	github.com/lucaslorentz/caddy-supervisor v0.3.2
 	github.com/mastercactapus/caddy-proxyprotocol v0.0.3
 	github.com/miekg/caddy-prometheus v0.0.0-20190709133612-1fe4cb19becd
+	github.com/miolini/datacounter v1.0.2 // indirect
 	github.com/mmcloughlin/geohash v0.9.0 // indirect
 	github.com/nicolasazrak/caddy-cache v0.3.4
+	github.com/opentracing/opentracing-go v1.1.0 // indirect
+	github.com/payintech/caddy-datadog v0.0.0-20190812115610-44482c4c027a
 	github.com/pieterlouw/caddy-grpc v0.1.0
 	github.com/pquerna/cachecontrol v0.0.0-20180517163645-1555304b9b35 // indirect
 	github.com/pteich/caddy-tlsconsul v0.0.0-20190901182037-6acb4a557d88
 	github.com/pyed/ipfilter v1.1.4
 	github.com/quasoft/memstore v0.0.0-20191010062613-2bce066d2b0b // indirect
+	github.com/restic/caddy v0.2.1 // indirect
+	github.com/restic/rest-server v0.9.8 // indirect
 	github.com/rs/cors v1.7.0 // indirect
 	github.com/simia-tech/caddy-locale v1.0.0
 	github.com/steambap/captcha v1.3.0 // indirect
 	github.com/tarent/loginsrv v1.3.1
 	github.com/techknowlogick/caddy-s3browser v1.0.0
 	github.com/xuqingfeng/caddy-rate-limit v1.6.6
+	go.okkur.org/gomods v0.1.3
+	go.okkur.org/torproxy v0.2.1
+	goji.io v2.0.2+incompatible // indirect
+	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df // indirect
 )

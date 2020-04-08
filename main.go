@@ -75,17 +75,19 @@ import (
 	_ "github.com/mastercactapus/caddy-proxyprotocol"       //http.proxyprotocol
 	_ "github.com/miekg/caddy-prometheus"                   //http.prometheus
 	_ "github.com/nicolasazrak/caddy-cache"                 //http.cache
+	_ "github.com/payintech/caddy-datadog"                  //http.datadog
 	_ "github.com/pieterlouw/caddy-grpc"                    //http.grpc
 	_ "github.com/pyed/ipfilter"                            //http.ipfilter
+	_ "github.com/shuxs/caddy/gopkg"                        //http.gopkg
 	_ "github.com/simia-tech/caddy-locale"                  //http.locale
 	_ "github.com/tarent/loginsrv/caddy"                    //http.login
 	_ "github.com/techknowlogick/caddy-s3browser"           //http.s3browser
 	_ "github.com/xuqingfeng/caddy-rate-limit"              //http.ratelimit
+	_ "go.okkur.org/gomods"                                 //http.gomods
+	_ "go.okkur.org/torproxy"                               //http.torproxy
 
 	// _ "github.com/leelynne/caddy-awses"    //http.awses
-	// _ "github.com/payintech/caddy-datadog" //http.datadog
-	// _ "github.com/restic/caddy" 			  //http.restic
-	// _ "go.okkur.org/gomods"                //http.gomods
+	// _ "github.com/restic/caddy" //http.restic
 
 	//Caddyfile Loaders
 	_ "github.com/lucaslorentz/caddy-docker-proxy/plugin" //docker
@@ -96,7 +98,7 @@ import (
 	//TLS Clustering
 	_ "github.com/pteich/caddy-tlsconsul" //consul
 
-	//Event Hooks
+	// Event Hooks
 	_ "github.com/hacdias/caddy-service" //hook.service issus: panic: close of closed channel
 )
 
