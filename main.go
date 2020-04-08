@@ -5,9 +5,6 @@ import (
 
 	//Plugins
 
-	//Caddyfile Loaders
-	_ "github.com/lucaslorentz/caddy-docker-proxy/plugin" //docker
-
 	//DNS Providers
 	_ "github.com/caddyserver/dnsproviders/acmedns"
 	_ "github.com/caddyserver/dnsproviders/alidns"
@@ -53,6 +50,7 @@ import (
 	_ "github.com/caddyserver/dnsproviders/vultr"
 
 	//Directives/Middleware
+	_ "blitznote.com/src/http.upload"                       //http.upload
 	_ "github.com/BTBurke/caddy-jwt"                        //http.jwt
 	_ "github.com/SchumacherFM/mailout"                     //http.mailout
 	_ "github.com/Xumeiquer/nobots"                         //http.nobots
@@ -63,6 +61,7 @@ import (
 	_ "github.com/captncraig/cors/caddy"                    //http.cors
 	_ "github.com/casbin/caddy-authz"                       //http.authz
 	_ "github.com/coopernurse/caddy-awslambda"              //http.awslambda
+	_ "github.com/dhaavi/caddy-permission"                  //http.permission
 	_ "github.com/echocat/caddy-filter"                     //http.filter
 	_ "github.com/epicagency/caddy-expires"                 //http.expires
 	_ "github.com/freman/caddy-reauth"                      //http.reauth
@@ -72,37 +71,33 @@ import (
 	_ "github.com/jung-kurt/caddy-pubsub"                   //http.pubsub
 	_ "github.com/linkonoid/caddy-dyndns"                   //http.dyndns
 	_ "github.com/lucaslorentz/caddy-supervisor/httpplugin" //http.supervisor
+	_ "github.com/lucaslorentz/caddy-supervisor/httpplugin" //http.supervisor
 	_ "github.com/mastercactapus/caddy-proxyprotocol"       //http.proxyprotocol
 	_ "github.com/miekg/caddy-prometheus"                   //http.prometheus
-	_ "github.com/miquella/caddy-awses"                     //http.awses
 	_ "github.com/nicolasazrak/caddy-cache"                 //http.cache
-	_ "github.com/payintech/caddy-datadog"                  //http.datadog
 	_ "github.com/pieterlouw/caddy-grpc"                    //http.grpc
 	_ "github.com/pyed/ipfilter"                            //http.ipfilter
+	_ "github.com/simia-tech/caddy-locale"                  //http.locale
+	_ "github.com/tarent/loginsrv/caddy"                    //http.login
+	_ "github.com/techknowlogick/caddy-s3browser"           //http.s3browser
+	_ "github.com/xuqingfeng/caddy-rate-limit"              //http.ratelimit
 
-	_ "github.com/restic/caddy"                   //http.restic
-	_ "github.com/shuxs/gopkgr"                   //http.gopkgr
-	_ "github.com/simia-tech/caddy-locale"        //http.locale
-	_ "github.com/tarent/loginsrv/caddy"          //http.login
-	_ "github.com/techknowlogick/caddy-s3browser" //http.s3browser
-	_ "github.com/xuqingfeng/caddy-rate-limit"    //http.ratelimit
-	_ "github.com/zikes/gopkg"                    //http.gopkg
+	// _ "github.com/leelynne/caddy-awses"    //http.awses
+	// _ "github.com/payintech/caddy-datadog" //http.datadog
+	// _ "github.com/restic/caddy" 			  //http.restic
+	// _ "go.okkur.org/gomods"                //http.gomods
 
-	// _ "go.okkur.org/torproxy" //http.torproxy: registered dev directive
-
-	//More Directives/Middleware
-	_ "blitznote.com/src/http.upload"      //http.upload
-	_ "github.com/dhaavi/caddy-permission" //http.permission
-
-	//Event Hooks
-	_ "github.com/hacdias/caddy-service" //hook.service issus: panic: close of closed channel
+	//Caddyfile Loaders
+	_ "github.com/lucaslorentz/caddy-docker-proxy/plugin" //docker
 
 	//Server Types
 	_ "github.com/lucaslorentz/caddy-supervisor/servertype" //supervisor
-	_ "github.com/pieterlouw/caddy-net/caddynet"            //net
 
 	//TLS Clustering
 	_ "github.com/pteich/caddy-tlsconsul" //consul
+
+	//Event Hooks
+	_ "github.com/hacdias/caddy-service" //hook.service issus: panic: close of closed channel
 )
 
 func main() {

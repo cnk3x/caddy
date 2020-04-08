@@ -1,19 +1,20 @@
 #!/bin/sh
 
-export GOPROXY="https://goproxy.io"
+export GOPROXY="https://goproxy.cn,direct"
 export CGO_ENABLED=0
 
-set -e
+set -eu
 
-oss="linux darwin windows"
-archs="amd64 386"
+oss="linux darwin"
+archs="amd64"
 
 mkdir -p bin
-for os in $oss; do
-    for arch in $archs; do
-        echo "build caddy-${os}-${arch}"
-        GOOS=${os} GOARCH=${arch} go build -ldflags '-s -w' -v -o caddy-${os}-${arch}
-        tar zcf caddy-${os}-${arch}.tar.gz caddy-${os}-${arch}
-        mv caddy-${os}-${arch}* bin/
+for os in ${oss}; do
+    for arch in ${archs}; do
+        binName="caddy-${os}-${arch}"
+        echo "build ${binName}"
+        GOOS=${os} GOARCH=${arch} go build -ldflags '-s -w' -v -o ${binName}
+        tar zcf ${binName}.tar.gz ${binName}
+        mv ${binName}* bin/
     done
 done
