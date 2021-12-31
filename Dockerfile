@@ -15,7 +15,6 @@ RUN xcaddy build --output /caddy \
     --with github.com/caddy-dns/openstack-designate \
     --with github.com/caddy-dns/route53 \
     --with github.com/caddy-dns/vultr \
-    --with github.com/cnk3x/libdns-westcn/caddy \
     --with github.com/mholt/caddy-dynamicdns \
     --with github.com/abiosoft/caddy-exec \
     --with github.com/hslatman/caddy-crowdsec-bouncer/crowdsec \

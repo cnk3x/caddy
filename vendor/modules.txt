@@ -280,16 +280,12 @@ github.com/cheekybits/genny/parse
 github.com/chzyer/readline
 # github.com/cnk3x/k3xurl v0.0.0-20211231113758-e6f74b495a76
 ## explicit
-github.com/cnk3x/k3xurl
 # github.com/cnk3x/k3xurl/process v0.0.0-20211231113758-e6f74b495a76
 ## explicit
-github.com/cnk3x/k3xurl/process
 # github.com/cnk3x/libdns-westcn v0.0.0-20211231113835-ab62b7a000f1
 ## explicit
-github.com/cnk3x/libdns-westcn
 # github.com/cnk3x/libdns-westcn/caddy v0.0.0-20211231113835-ab62b7a000f1
 ## explicit
-github.com/cnk3x/libdns-westcn/caddy
 # github.com/coreos/go-semver v0.3.0
 github.com/coreos/go-semver/semver
 # github.com/coreos/go-systemd v0.0.0-20191104093116-d3cd4ed1dbcf
@@ -502,16 +498,6 @@ github.com/go-sql-driver/mysql
 github.com/go-stack/stack
 # github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0
 github.com/go-task/slim-sprig
-# github.com/goccy/go-json v0.8.1
-github.com/goccy/go-json
-github.com/goccy/go-json/internal/decoder
-github.com/goccy/go-json/internal/encoder
-github.com/goccy/go-json/internal/encoder/vm
-github.com/goccy/go-json/internal/encoder/vm_color
-github.com/goccy/go-json/internal/encoder/vm_color_indent
-github.com/goccy/go-json/internal/encoder/vm_indent
-github.com/goccy/go-json/internal/errors
-github.com/goccy/go-json/internal/runtime
 # github.com/gofrs/uuid v4.0.0+incompatible
 github.com/gofrs/uuid
 # github.com/golang-jwt/jwt v3.2.1+incompatible
@@ -985,11 +971,12 @@ github.com/ss098/certmagic-s3
 github.com/stoewer/go-strcase
 # github.com/subosito/gotenv v1.2.0
 github.com/subosito/gotenv
-# github.com/tidwall/gjson v1.7.5
+# github.com/tidwall/gjson v1.12.1
+## explicit
 github.com/tidwall/gjson
-# github.com/tidwall/match v1.0.3
+# github.com/tidwall/match v1.1.1
 github.com/tidwall/match
-# github.com/tidwall/pretty v1.1.0
+# github.com/tidwall/pretty v1.2.0
 github.com/tidwall/pretty
 # github.com/tidwall/sjson v1.1.6
 github.com/tidwall/sjson
@@ -1006,6 +993,8 @@ github.com/vincent-petithory/dataurl
 github.com/vultr/govultr/v2
 # github.com/xanzy/ssh-agent v0.3.0
 github.com/xanzy/ssh-agent
+# github.com/xdg-go/scram v1.0.2
+## explicit
 # github.com/yosida95/uritemplate/v3 v3.0.1
 github.com/yosida95/uritemplate/v3
 # github.com/yuin/goldmark v1.4.1
@@ -1031,7 +1020,8 @@ gitlab.com/NebulousLabs/go-upnp/goupnp/soap
 gitlab.com/NebulousLabs/go-upnp/goupnp/ssdp
 # go.etcd.io/bbolt v1.3.6
 go.etcd.io/bbolt
-# go.mongodb.org/mongo-driver v1.4.3
+# go.mongodb.org/mongo-driver v1.8.1
+## explicit
 go.mongodb.org/mongo-driver/bson
 go.mongodb.org/mongo-driver/bson/bsoncodec
 go.mongodb.org/mongo-driver/bson/bsonoptions
