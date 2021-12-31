@@ -12,5 +12,6 @@
 *.out
 
 bin/
-vendor/
-go.sum
+release/
+
+.DS_Store

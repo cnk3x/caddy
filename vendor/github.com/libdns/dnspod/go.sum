@@ -1,0 +1,6 @@
+github.com/libdns/libdns v0.0.0-20200501023120-186724ffc821 h1:663opx/RKxiISi1ozf0WbvweQpYBgf34dx8hKSIau3w=
+github.com/libdns/libdns v0.0.0-20200501023120-186724ffc821/go.mod h1:yQCXzk1lEZmmCPa857bnk4TsOiqYasqpyOEeSObbb40=
+github.com/libdns/libdns v0.2.1 h1:Wu59T7wSHRgtA0cfxC+n1c/e+O3upJGWytknkmFEDis=
+github.com/libdns/libdns v0.2.1/go.mod h1:yQCXzk1lEZmmCPa857bnk4TsOiqYasqpyOEeSObbb40=
+github.com/nrdcg/dnspod-go v0.4.0 h1:c/jn1mLZNKF3/osJ6mz3QPxTudvPArXTjpkmYj0uK6U=
+github.com/nrdcg/dnspod-go v0.4.0/go.mod h1:vZSoFSFeQVm2gWLMkyX61LZ8HI3BaqtHZWgPTGKr6KQ=

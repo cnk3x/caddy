@@ -1,20 +1,32 @@
-#!/bin/sh
-
-export GOPROXY="https://goproxy.cn,direct"
-export CGO_ENABLED=0
+#!/usr/bin/env sh
 
 set -eu
 
-oss="linux darwin"
-archs="amd64"
+cd $(dirname $0)
+ROOT=$(pwd)
 
-mkdir -p bin
-for os in ${oss}; do
-    for arch in ${archs}; do
-        binName="caddy-${os}-${arch}"
-        echo "build ${binName}"
-        GOOS=${os} GOARCH=${arch} go build -ldflags '-s -w' -v -o ${binName}
-        tar zcf ${binName}.tar.gz ${binName}
-        mv ${binName}* bin/
-    done
-done
+export GOPROXY="https://goproxy.cn,direct"
+export OUTPUT=${ROOT}/release
+export GOWORK=off
+export CGO_ENABLED=0
+export GOROOT=$(go env GOROOT)
+export GOOS=$(go env GOOS)
+export GOARCH=$(go env GOARCH)
+
+echo "build caddy ${GOOS} ${GOARCH}"
+archive="${OUTPUT}/caddy.tar.gz"
+binary="caddy"
+if [ "${GOOS}" == "windows" ]; then
+    binary=${binary}.exe
+fi
+
+# -workfile=off
+${GOROOT}/bin/go build -mod=vendor -ldflags '-extldflags "-static"' -o ${binary} .
+tar zcvf ${archive} ${binary}
+
+${root}/${binary} list-modules
+${root}/${binary} version
+
+rm ${binary}
+
+echo "build file at ${archive}"

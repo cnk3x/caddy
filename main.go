@@ -1,109 +1,67 @@
 package main
 
 import (
-	"github.com/caddyserver/caddy/caddy/caddymain"
+	caddycmd "github.com/caddyserver/caddy/v2/cmd"
 
-	//Plugins
-
-	//DNS Providers
-	_ "github.com/caddyserver/dnsproviders/acmedns"
-	_ "github.com/caddyserver/dnsproviders/alidns"
-	_ "github.com/caddyserver/dnsproviders/auroradns"
-	_ "github.com/caddyserver/dnsproviders/azure"
-	_ "github.com/caddyserver/dnsproviders/cloudflare"
-	_ "github.com/caddyserver/dnsproviders/cloudxns"
-	_ "github.com/caddyserver/dnsproviders/conoha"
-	_ "github.com/caddyserver/dnsproviders/digitalocean"
-	_ "github.com/caddyserver/dnsproviders/dnsimple"
-	_ "github.com/caddyserver/dnsproviders/dnsmadeeasy"
-	_ "github.com/caddyserver/dnsproviders/dnspod"
-	_ "github.com/caddyserver/dnsproviders/duckdns"
-	_ "github.com/caddyserver/dnsproviders/dyn"
-	_ "github.com/caddyserver/dnsproviders/exoscale"
-	_ "github.com/caddyserver/dnsproviders/fastdns"
-	_ "github.com/caddyserver/dnsproviders/gandi"
-	_ "github.com/caddyserver/dnsproviders/gandiv5"
-	_ "github.com/caddyserver/dnsproviders/generic"
-	_ "github.com/caddyserver/dnsproviders/glesys"
-	_ "github.com/caddyserver/dnsproviders/godaddy"
-	_ "github.com/caddyserver/dnsproviders/googlecloud"
-	_ "github.com/caddyserver/dnsproviders/httpreq"
-	_ "github.com/caddyserver/dnsproviders/inwx"
-	_ "github.com/caddyserver/dnsproviders/lightsail"
-	_ "github.com/caddyserver/dnsproviders/linode"
-	_ "github.com/caddyserver/dnsproviders/linodev4"
-	_ "github.com/caddyserver/dnsproviders/namecheap"
-	_ "github.com/caddyserver/dnsproviders/namedotcom"
-	_ "github.com/caddyserver/dnsproviders/namesilo"
-	_ "github.com/caddyserver/dnsproviders/nifcloud"
-	_ "github.com/caddyserver/dnsproviders/ns1"
-	_ "github.com/caddyserver/dnsproviders/otc"
-	_ "github.com/caddyserver/dnsproviders/ovh"
-	_ "github.com/caddyserver/dnsproviders/pdns"
-	_ "github.com/caddyserver/dnsproviders/rackspace"
-	_ "github.com/caddyserver/dnsproviders/rfc2136"
-	_ "github.com/caddyserver/dnsproviders/route53"
-	_ "github.com/caddyserver/dnsproviders/selectel"
-	_ "github.com/caddyserver/dnsproviders/stackpath"
-	_ "github.com/caddyserver/dnsproviders/transip"
-	_ "github.com/caddyserver/dnsproviders/vscale"
-	_ "github.com/caddyserver/dnsproviders/vultr"
-
-	//Directives/Middleware
-	_ "blitznote.com/src/http.upload"                       //http.upload
-	_ "github.com/BTBurke/caddy-jwt"                        //http.jwt
-	_ "github.com/SchumacherFM/mailout"                     //http.mailout
-	_ "github.com/Xumeiquer/nobots"                         //http.nobots
-	_ "github.com/aablinov/caddy-geoip"                     //http.geoip
-	_ "github.com/abiosoft/caddy-git"                       //http.git
-	_ "github.com/caddyserver/forwardproxy"                 //http.forwardproxy
-	_ "github.com/captncraig/caddy-realip"                  //http.realip
-	_ "github.com/captncraig/cors/caddy"                    //http.cors
-	_ "github.com/casbin/caddy-authz"                       //http.authz
-	_ "github.com/coopernurse/caddy-awslambda"              //http.awslambda
-	_ "github.com/dhaavi/caddy-permission"                  //http.permission
-	_ "github.com/echocat/caddy-filter"                     //http.filter
-	_ "github.com/epicagency/caddy-expires"                 //http.expires
-	_ "github.com/freman/caddy-reauth"                      //http.reauth
-	_ "github.com/hacdias/caddy-minify"                     //http.minify
-	_ "github.com/hacdias/caddy-webdav"                     //http.webdav
-	_ "github.com/jung-kurt/caddy-cgi"                      //http.cgi
-	_ "github.com/jung-kurt/caddy-pubsub"                   //http.pubsub
-	_ "github.com/linkonoid/caddy-dyndns"                   //http.dyndns
-	_ "github.com/lucaslorentz/caddy-supervisor/httpplugin" //http.supervisor
-	_ "github.com/lucaslorentz/caddy-supervisor/httpplugin" //http.supervisor
-	_ "github.com/mastercactapus/caddy-proxyprotocol"       //http.proxyprotocol
-	_ "github.com/miekg/caddy-prometheus"                   //http.prometheus
-	_ "github.com/nicolasazrak/caddy-cache"                 //http.cache
-	_ "github.com/payintech/caddy-datadog"                  //http.datadog
-	_ "github.com/pieterlouw/caddy-grpc"                    //http.grpc
-	_ "github.com/pyed/ipfilter"                            //http.ipfilter
-	_ "github.com/shuxs/caddy/gopkg"                        //http.gopkg
-	_ "github.com/simia-tech/caddy-locale"                  //http.locale
-	_ "github.com/tarent/loginsrv/caddy"                    //http.login
-	_ "github.com/techknowlogick/caddy-s3browser"           //http.s3browser
-	_ "github.com/xuqingfeng/caddy-rate-limit"              //http.ratelimit
-	_ "go.okkur.org/gomods"                                 //http.gomods
-	_ "go.okkur.org/torproxy"                               //http.torproxy
-
-	// _ "github.com/leelynne/caddy-awses"    //http.awses
-	// _ "github.com/restic/caddy" //http.restic
-
-	//Caddyfile Loaders
-	_ "github.com/lucaslorentz/caddy-docker-proxy/plugin" //docker
-
-	//Server Types
-	_ "github.com/lucaslorentz/caddy-supervisor/servertype" //supervisor
-
-	//TLS Clustering
-	_ "github.com/pteich/caddy-tlsconsul" //consul
-
-	// Event Hooks
-	_ "github.com/hacdias/caddy-service" //hook.service issus: panic: close of closed channel
+	// plug in Caddy modules here
+	_ "github.com/caddyserver/caddy/v2/modules/standard"
+	_ "github.com/caddy-dns/alidns"
+	_ "github.com/caddy-dns/azure"
+	_ "github.com/caddy-dns/cloudflare"
+	_ "github.com/caddy-dns/digitalocean"
+	_ "github.com/caddy-dns/dnspod"
+	_ "github.com/caddy-dns/duckdns"
+	_ "github.com/caddy-dns/gandi"
+	_ "github.com/caddy-dns/hetzner"
+	_ "github.com/caddy-dns/openstack-designate"
+	_ "github.com/caddy-dns/route53"
+	_ "github.com/caddy-dns/vultr"
+	_ "github.com/cnk3x/libdns-westcn/caddy"
+	_ "github.com/mholt/caddy-dynamicdns"
+	_ "github.com/abiosoft/caddy-exec"
+	_ "github.com/hslatman/caddy-crowdsec-bouncer/crowdsec"
+	_ "github.com/ss098/certmagic-s3"
+	_ "github.com/gamalan/caddy-tlsredis"
+	_ "github.com/silinternational/certmagic-storage-dynamodb/v2"
+	_ "github.com/pteich/caddy-tlsconsul"
+	_ "github.com/caddyserver/format-encoder"
+	_ "github.com/mastercactapus/caddy2-proxyprotocol"
+	_ "github.com/ggicci/caddy-jwt"
+	_ "github.com/ueffel/caddy-brotli"
+	_ "github.com/HeavenVolkoff/caddy-authelia/plugin"
+	_ "github.com/greenpau/caddy-auth-portal"
+	_ "github.com/casbin/caddy-authz/v2"
+	_ "github.com/aksdb/caddy-cgi/v2"
+	_ "github.com/hslatman/caddy-crowdsec-bouncer/http"
+	_ "github.com/cubic3d/caddy-ct"
+	_ "github.com/dunglas/mercure/caddy"
+	_ "github.com/abiosoft/caddy-json-parse"
+	_ "github.com/abiosoft/caddy-hmac"
+	_ "magnax.ca/caddy/gopkg"
+	_ "github.com/sjtug/caddy2-filter"
+	_ "github.com/caddyserver/replace-response"
+	_ "github.com/kirsch33/realip"
+	_ "github.com/mholt/caddy-ratelimit"
+	_ "github.com/cubic3d/caddy-quantity-limiter"
+	_ "github.com/lindenlab/caddy-s3-proxy"
+	_ "github.com/lolPants/caddy-requestid"
+	_ "github.com/caddyserver/ntlm-transport"
+	_ "github.com/porech/caddy-maxmind-geolocation"
+	_ "github.com/WingLim/caddy-webhook"
+	_ "github.com/mholt/caddy-webdav"
+	_ "github.com/dunglas/vulcain/caddy"
+	_ "github.com/greenpau/caddy-trace"
+	_ "github.com/mholt/caddy-l4/layer4"
+	_ "github.com/mholt/caddy-l4/modules/l4echo"
+	_ "github.com/mholt/caddy-l4/modules/l4proxy"
+	_ "github.com/mholt/caddy-l4/modules/l4tee"
+	_ "github.com/mholt/caddy-l4/modules/l4tls"
+	_ "github.com/mholt/caddy-l4/modules/l4ssh"
+	_ "github.com/mholt/caddy-l4/modules/l4http"
+	_ "github.com/hslatman/caddy-crowdsec-bouncer/layer4"
+	_ "github.com/baldinof/caddy-supervisor"
 )
 
 func main() {
-	// optional: disable telemetry
-	caddymain.EnableTelemetry = false
-	caddymain.Run()
+	caddycmd.Main()
 }

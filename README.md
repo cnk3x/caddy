@@ -1,16 +1,18 @@
-# all plugins caddy 1
+# caddy builder
 
-```shell
-https://github.com/shuxs/caddy.git
+编译 caddy，集成目前官网发布的所有插件
+
+```sh
+git clone https://github.com/cnk3x/caddy.git
 cd caddy
-go build
-./caddy --plugins
-```
 
-```go
-// 这四个玩意编译不过
-// _ "github.com/leelynne/caddy-awses"    //http.awses
-// _ "github.com/payintech/caddy-datadog" //http.datadog
-// _ "github.com/restic/caddy"            //http.restic
-// _ "go.okkur.org/gomods"                //http.gomods
+# 本地编译
+sh ./build.sh
+# 通过 xcaddy 的镜像编译成镜像
+# sh ./build_docker.sh 镜像名称
+sh ./build_docker.sh ghcr.io/cnk3x/caddy
+
+# 通过本地代码译成镜像
+# sh ./build_docker_src.sh 镜像名称
+sh ./build_docker.sh ghcr.io/cnk3x/caddy
 ```
