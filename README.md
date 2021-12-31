@@ -10,12 +10,13 @@ cd caddy
 sh ./build.sh
 
 # 通过本地代码译成镜像
+# sh ./build_docker.sh 镜像名称
+sh ./build_docker.sh ghcr.io/cnk3x/caddy
+
+# 通过 xcaddy 的镜像编译成镜像
 # sh ./build_docker_xcaddy.sh 镜像名称
 sh ./build_docker_xcaddy.sh ghcr.io/cnk3x/caddy
 
-# 通过 xcaddy 的镜像编译成镜像
-# sh ./build_docker.sh 镜像名称
-sh ./build_docker.sh ghcr.io/cnk3x/caddy
 ```
 
 xcaddy本地编译
