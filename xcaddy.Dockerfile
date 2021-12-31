@@ -1,29 +1,8 @@
-# caddy builder
+FROM caddy:builder as builder
 
-编译 caddy，集成目前官网发布的所有插件
+RUN apk --no-cache add upx ca-certificates
 
-```sh
-git clone https://github.com/cnk3x/caddy.git
-cd caddy
-
-# 本地编译
-sh ./build.sh
-
-# 通过本地代码译成镜像
-# sh ./build_docker_xcaddy.sh 镜像名称
-sh ./build_docker_xcaddy.sh ghcr.io/cnk3x/caddy
-
-# 通过 xcaddy 的镜像编译成镜像
-# sh ./build_docker.sh 镜像名称
-sh ./build_docker.sh ghcr.io/cnk3x/caddy
-```
-
-xcaddy本地编译
-
-```sh
-GOBIN=$(pwd) go install github.com/caddyserver/xcaddy/cmd/xcaddy
-
-./xcaddy build --output /caddy \
+RUN xcaddy build --output /caddy \
     --with github.com/caddyserver/caddy/v2/modules/standard \
     --with github.com/caddy-dns/alidns \
     --with github.com/caddy-dns/azure \
@@ -78,5 +57,19 @@ GOBIN=$(pwd) go install github.com/caddyserver/xcaddy/cmd/xcaddy
     --with github.com/mholt/caddy-l4/modules/l4ssh \
     --with github.com/mholt/caddy-l4/modules/l4http \
     --with github.com/hslatman/caddy-crowdsec-bouncer/layer4 \
-    --with github.com/baldinof/caddy-supervisor
-```
+    --with github.com/baldinof/caddy-supervisor && \
+    upx -9 /caddy
+
+FROM scratch
+
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+COPY --from=builder /caddy /caddy
+
+ENV HOME=/data
+WORKDIR /data
+VOLUME [ "/data" ]
+EXPOSE 80 443
+
+ENTRYPOINT [ "/caddy" ]
+
+CMD [ "run", "-environ", "-watch" ]
