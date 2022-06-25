@@ -1,0 +1,44 @@
+displayName: Souin
+type: middleware
+import: github.com/darkweak/souin/plugins/traefik
+summary: 'Souin is a powerfull cache system as fast as Varnish but easier to configure'
+
+# Refer to https://github.com/darkweak/Souin/blob/master/configuration/configuration.sample.yml for full configuration
+testData:
+  api:
+    prometheus: {}
+    souin: {}
+  default_cache:
+    headers:
+      - Authorization
+      - Content-Type
+    regex:
+      exclude: 'ARegexHere'
+    ttl: 10s
+  log_level: debug
+  urls:
+    'domain.com/testing':
+      ttl: 2s
+      headers:
+        - Authorization
+    'mysubdomain.domain.com':
+      ttl: 50s
+      headers:
+        - Authorization
+        - 'Content-Type'
+  ykeys:
+    The_First_Test:
+      headers:
+        Content-Type: '.+'
+    The_Second_Test:
+      url: 'the/second/.+'
+    The_Third_Test:
+    The_Fourth_Test:
+surrogate_keys:
+  The_First_Test:
+    headers:
+      Content-Type: '.+'
+  The_Second_Test:
+    url: 'the/second/.+'
+  The_Third_Test:
+  The_Fourth_Test:

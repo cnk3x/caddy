@@ -1,0 +1,6 @@
+caddy
+typescript
+dist
+openapitools.json
+*.tmp
+bundle.tar.gz

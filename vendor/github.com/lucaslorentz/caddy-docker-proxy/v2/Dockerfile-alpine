@@ -1,0 +1,15 @@
+FROM alpine:3.15.4 as alpine
+ARG TARGETPLATFORM
+LABEL maintainer "Lucas Lorentz <lucaslorentzlara@hotmail.com>"
+
+EXPOSE 80 443 2019
+ENV XDG_CONFIG_HOME /config
+ENV XDG_DATA_HOME /data
+
+RUN apk add -U --no-cache ca-certificates curl
+
+COPY artifacts/binaries/$TARGETPLATFORM/caddy /bin/
+
+ENTRYPOINT ["/bin/caddy"]
+
+CMD ["docker-proxy"]

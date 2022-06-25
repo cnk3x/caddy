@@ -1,0 +1,5 @@
+artifacts
+vendor
+debug.test
+local
+.DS_Store

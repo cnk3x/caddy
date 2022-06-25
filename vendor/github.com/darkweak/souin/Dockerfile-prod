@@ -1,0 +1,43 @@
+FROM golang:1.16-alpine AS builder
+
+RUN apk update && apk upgrade && \
+    apk add --no-cache bash git openssh gcc libc-dev
+ENV GOPATH /app
+
+RUN mkdir -p /app/src/github.com/darkweak/cmd
+RUN mkdir -p /app/src/github.com/darkweak/souin
+ADD ./go.* /app/src/github.com/darkweak/souin/
+RUN mkdir -p /ssl
+ADD ./api /app/src/github.com/darkweak/souin/api
+ADD ./cache /app/src/github.com/darkweak/souin/cache
+ADD ./context /app/src/github.com/darkweak/souin/context
+ADD ./tests /app/src/github.com/darkweak/souin/tests
+ADD ./rfc /app/src/github.com/darkweak/souin/rfc
+ADD ./configuration /app/src/github.com/darkweak/souin/configuration
+ADD ./configurationtypes /app/src/github.com/darkweak/souin/configurationtypes
+ADD ./default /app/src/github.com/darkweak/souin/default
+ADD ./errors /app/src/github.com/darkweak/souin/errors
+ADD ./helpers /app/src/github.com/darkweak/souin/helpers
+ADD ./plugins /app/src/github.com/darkweak/souin/plugins
+
+WORKDIR /app/src/github.com/darkweak/souin
+RUN go mod download
+
+RUN CGO_ENABLED=0 go build -a \
+  -tags netgo -ldflags '-w -extldflags "-static"' -o /app/cmd/souin ./plugins/souin
+
+EXPOSE 80
+
+FROM alpine:latest AS souin
+
+COPY --from=builder /app/cmd/souin .
+COPY --from=builder /app/src/github.com/darkweak/souin/configuration .
+RUN mkdir -p /ssl
+COPY --from=builder /app/src/github.com/darkweak/souin/default .
+RUN mkdir -p configuration
+RUN mv *.yml configuration/
+RUN mkdir -p default
+RUN mv server.* default/
+RUN chmod +x ./souin
+
+CMD ["./souin"]

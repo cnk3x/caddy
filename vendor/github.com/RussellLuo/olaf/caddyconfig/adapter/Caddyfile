@@ -1,0 +1,8 @@
+{
+    order olaf last
+    auto_https off
+}
+
+example.com {
+    olaf apis.yaml
+}

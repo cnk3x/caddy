@@ -1,0 +1,12 @@
+/cmd/*
+.env
+docker-compose.yml
+cover.out
+Dockerfile
+/.idea/
+.DS_Store
+traefik.json
+*.iml
+plugins/caddy/caddy
+plugins/caddy/.github/*
+/vendor/

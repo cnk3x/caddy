@@ -1,0 +1,70 @@
+{
+  "apps": {
+    "cache": {
+      "api": {
+        "souin": {
+          "enable": true
+        }
+      },
+      "cache_keys": {
+        ".+.css": {
+          "disable_host": true,
+          "disable_method": true
+        }
+      },
+      "cdn": {
+          "dynamic": true,
+          "strategy": "hard"
+      },
+      "headers": [
+        "Content-Type",
+        "Authorization"
+      ],
+      "log_level": "debug",
+      "ttl": "1000s"
+    },
+    "http": {
+      "servers": {
+        "": {
+          "listen": [":4443"],
+          "routes": [
+            {
+              "match": [
+                {
+                  "path": [
+                    "*"
+                  ]
+                }
+              ],
+              "handle": [
+                {
+                  "handler": "cache",
+                  "cache_keys": {
+                    ".+.css": {
+                      "disable_method": true
+                    }
+                  }
+                },
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "127.0.0.1:3000"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "logging": {
+    "logs": {
+      "": {
+        "level": "debug"
+      }
+    }
+  }
+}

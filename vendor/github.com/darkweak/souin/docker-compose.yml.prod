@@ -1,0 +1,23 @@
+version: '3.4'
+
+x-networks: &networks
+  networks:
+    - your_network
+
+services:
+  souin:
+    build:
+      context: .
+      target: souin
+      dockerfile: Dockerfile-prod
+    ports:
+      - 80:80
+#      - 443:443
+    volumes:
+      - ./traefik.json:/ssl/traefik.json
+      - ./configuration/configuration.yml:/configuration/configuration.yml
+    <<: *networks
+
+networks:
+  your_network:
+    external: true

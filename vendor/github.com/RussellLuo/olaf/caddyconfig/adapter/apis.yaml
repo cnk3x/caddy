@@ -1,0 +1,58 @@
+services:
+- name: static
+  routes:
+    # Write a 200 status with an empty body for all health checks
+    - methods:
+      - GET
+      paths:
+      - /health-check
+      response:
+        status_code: 200
+    # Write a 404 status with an empty body for all unmatched routes
+    - priority: -.inf
+      response:
+        status_code: 404
+
+- name: production
+  upstream:
+    backends: ["localhost:2222", "localhost:2223"]
+    dial_timeout: 5s
+    max_requests: 100
+    lb_policy: round_robin
+    header_down:
+      add:
+        Server: ["Production"]
+  routes:
+    - hosts:
+      - example.com
+      paths:
+      - /api/foo # original path from the client
+      # final path to service `production`: /v1/foo
+      strip_prefix: /api
+      target_path: /v1$ # `$` represents the request path, which is /foo here
+    - hosts:
+      - example.com
+      paths:
+      # `~:` represents a regex path
+      - ~:^/bar/\w+ # samples: /bar/1 or /bar/word
+      plugins:
+      - type: rate_limit
+        config:
+          key: '{query.id}'
+          rate: 10r/s
+      - type: canary
+        config:
+          # path "/bar/1?id=5" will be routed to service `staging`
+          key: '{query.id}'
+          type: int
+          whitelist: $ > 0 && $ <= 10 # `$` represents the value of id
+          upstream: staging
+
+- name: staging
+  upstream:
+    backends: ["localhost:3333"]
+    dial_timeout: 5s
+    max_requests: 100
+    header_down:
+      add:
+        Server: ["Staging"]

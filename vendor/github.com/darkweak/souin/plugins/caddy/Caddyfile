@@ -1,0 +1,88 @@
+{
+    order cache before rewrite
+    debug
+    log {
+        level debug
+    }
+    cache {
+        allowed_http_verbs GET POST
+        api {
+            prometheus
+            souin
+        }
+        cdn {
+            dynamic
+            strategy hard
+        }
+        regex {
+            exclude /test2.*
+        }
+        headers Content-Type Authorization
+        log_level debug
+        ttl 1000s
+        default_cache_control public
+    }
+}
+
+:4443
+respond "Hello World!"
+
+@match path /test1*
+@match2 path /test2*
+@matchdefault path /default
+@souin-api path /souin-api*
+
+cache @match {
+    ttl 5s
+}
+
+cache @match2 {
+    ttl 50s
+    headers Authorization
+}
+
+cache @matchdefault {
+    ttl 5s
+}
+
+route /vary {
+    cache {
+        ttl 15s
+    }
+    header Vary X-Something
+    respond "Hello {http.request.header.X-Something}"
+}
+
+route /cache-s-maxage {
+    cache
+    header Cache-Control "s-maxage=10"
+    respond "Hello, s-maxage!"
+}
+
+route /cache-maxage {
+    cache
+    header Cache-Control "max-age=5"
+    respond "Hello, max-age!"
+}
+
+route /not-modified {
+    cache {
+        ttl 5s
+    }
+    reverse_proxy 127.0.0.1:9000
+}
+
+route /no-reverse-proxy {
+    cache
+    reverse_proxy 127.0.0.1:9000
+}
+
+route /surrogate-keys {
+    cache
+    header Surrogate-Key "KEY-{http.request.header.X-Surrogate-Key-Suffix}"
+    header Vary X-Surrogate-Key-Suffix,Accept-Encoding
+    respond "Hello {http.request.header.X-Surrogate-Key-Suffix}"
+}
+
+cache @souin-api {
+}

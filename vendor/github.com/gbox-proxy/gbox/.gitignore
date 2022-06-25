@@ -1,0 +1,6 @@
+tmp
+docker-compose.override.yml
+
+# Release
+dist
+charts/gbox/charts

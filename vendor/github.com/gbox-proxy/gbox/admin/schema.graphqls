@@ -1,0 +1,11 @@
+type Query {
+    dummy: String!
+}
+
+type Mutation {
+    purgeAll: Boolean!
+    purgeOperation(name: String!): Boolean!
+    purgeTypeKey(type: String!, field: String!, key: ID!): Boolean!
+    purgeQueryRootField(field: String!): Boolean!
+    purgeType(type: String!): Boolean!
+}
