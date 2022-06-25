@@ -16,6 +16,7 @@ release/
 
 Dockerfile
 .*
-*.sh
 *.md
 LICENSE
+
+xcaddy*
